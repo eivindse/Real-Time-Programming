@@ -1,31 +1,25 @@
 package main
 
 import (
-    //. "fmt"
-    . "runtime"
-     "time"
+    "fmt"
+    "runtime"
+    "time"
 )
 
-/*
-func inc(c chan int){
-    for t := 0; t<1000; t++ {
-		add_number <- 1
-	} 
-}
-*/
-func main(){
+func main() {
     runtime.GOMAXPROCS(runtime.NumCPU())
-    
-    number:= make(chan int)
 
-    c := make(chan int)
+	ch := make(chan int)
+    go ting(ch)
 
-    go func(){
-        c <- 5
-    }()
-    
-    go inc(c)
-    
-    time.Sleep(100*time.Millisecond)
+    time.Sleep(1000*time.Millisecond)
+    fmt.Println(<-ch)
+    fmt.Println(<-ch)
+    fmt.Println(<-ch)
+    fmt.Println(<-ch)
+}
 
+func ting(ch chan int) {
+    ch <- 1
+    ch <- 5
 }
