@@ -6,7 +6,7 @@ import (
     "time"
 )
 
-func main2(){
+func main(){
 
     runtime.GOMAXPROCS(runtime.NumCPU())
 

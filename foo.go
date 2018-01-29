@@ -27,6 +27,6 @@ func main() {
 	go incrementing()
 	go decrementing()
 
-    time.Sleep(100*time.Millisecond)
+    time.Sleep(1000*time.Millisecond)
     Println("The magic number is:", i)
 }
