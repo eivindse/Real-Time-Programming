@@ -13,16 +13,16 @@ func CheckError(err error) {
 }
  
 func main() {
-    Conn, err := net.Dial("udp", "129.241.187.38:20013")
+    Conn, err := net.Dial("udp", ":20013")
     CheckError(err)
  
     defer Conn.Close()
     for {
-        msg := "hei"
+        msg := "hei you"
         buf := []byte(msg)
         _,err := Conn.Write(buf)
         if err != nil {
-            fmt.Println(msg, err)
+           fmt.Println(msg, err)
         }
         time.Sleep(time.Second)
     }
