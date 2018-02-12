@@ -1,3 +1,5 @@
+//Denne tar inn ingenting og sender ut (IP til maskinen som kaller funksjonen i streng, og error)
+
 package localip
 
 import (
