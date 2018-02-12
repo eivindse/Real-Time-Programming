@@ -1,3 +1,10 @@
+package main
+ 
+import (
+    "fmt"
+    "net"
+    "os"
+)
 
 func amIMaster(){//run if change in number of elevator
 	//Listen to udp for living elevators ip
@@ -12,13 +19,13 @@ func livingElevator(){
 	return alive
 }
 
-struct elevator_Status{
+/*struct elevator_Status{
 	string ip
 	int floor
 	var a [5]int //direction, door, light
-}
+}*/
 
-func master_Order(elevator_status[], order){
+func master_Order(elevator_status){//, order){
 	//do algorithm
 }
 
@@ -37,20 +44,43 @@ func TCP(){
 
 }
 
-func UDP(){
+func UDPListen(){
 	ServerConn, err := net.ListenPacket("udp", ":20013")
     CheckError(err)
     defer ServerConn.Close()
  
     buf := make([]byte, 1024)
- 
+
+
+
+
     for {
         n,addr,err := ServerConn.ReadFrom(buf)
         fmt.Println("Received ",string(buf[0:n]), " from ",addr)
+
+
  
         if err != nil {
             fmt.Println("Error: ",err)
         } 
     }
 
+}
+
+func UDPBroadcast(){
+    Conn, err := net.Dial("udp", ":20013")
+    CheckError(err)
+    floot := (rand.Intn(100))
+
+ 
+    defer Conn.Close()
+    for {
+        msg := fmt.Sprintf("Floor %d, going up", floot)
+        buf := []byte(msg)
+        _,err := Conn.Write(buf)
+        if err != nil {
+           fmt.Println(msg, err)
+        }
+        time.Sleep(time.Second*5)
+    }
 }

@@ -22,7 +22,7 @@ func main() {
  
     for {
         n,addr,err := ServerConn.ReadFrom(buf)
-        fmt.Println("Received ",string(buf[0:n]), " from ",addr)
+        fmt.Println(addr, ": ", string(buf[0:n]))
  
         if err != nil {
             fmt.Println("Error: ",err)
