@@ -6,6 +6,10 @@ import (
     "os"
 )
 
+func main(){
+
+}
+
 func amIMaster(){//run if change in number of elevator
 	//Listen to udp for living elevators ip
 	//if one ip is lower than mine do nothing
@@ -25,7 +29,7 @@ func livingElevator(){
 	var a [5]int //direction, door, light
 }*/
 
-func master_Order(elevator_status){//, order){
+func master_Order(elevator_status[], order){
 	//do algorithm
 }
 
@@ -51,18 +55,17 @@ func UDPListen(){
  
     buf := make([]byte, 1024)
 
-
-
+    ipArray := make([])
 
     for {
         n,addr,err := ServerConn.ReadFrom(buf)
         fmt.Println("Received ",string(buf[0:n]), " from ",addr)
 
-
  
         if err != nil {
             fmt.Println("Error: ",err)
-        } 
+        }
+        return buf, addr
     }
 
 }

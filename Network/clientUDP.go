@@ -14,7 +14,7 @@ func CheckError(err error) {
 }
  
 func main() {
-    Conn, err := net.Dial("udp", ":20013")
+    Conn, err := net.Dial("udp", ":44343")
     CheckError(err)
     floot := (rand.Intn(100))
  
@@ -26,6 +26,6 @@ func main() {
         if err != nil {
            fmt.Println(msg, err)
         }
-        time.Sleep(time.Second*10)
+        time.Sleep(time.Millisecond*400)
     }
 }
